@@ -4,8 +4,8 @@
 const liNodes = document.getElementsByClassName('student-item');
 const newDiv = document.createElement('div');
 const pageLocation = document.querySelector('.page').appendChild(newDiv);
-let currentPage = 1;
 newDiv.className = "pagination";
+let currentPage = 1;
 
 
 // Function to show students based on current page pageNumber
@@ -18,6 +18,19 @@ const showPage = (list, page) => {
       list[i].style.display = 'block';
     } else {
       list[i].style.display = 'none';
+    }
+  }
+};
+
+// add Active class to current page
+
+const addActive = () => {
+  const pageList = document.querySelectorAll('.pagination ul li');
+  for (i=0; i<pageList.length; i+=1) {
+    if (pageList[(currentPage - 1)] === pageList[i]) {
+      pageList[i].classList.add('active');
+    } else {
+      pageList[i].classList.remove('active');
     }
   }
 };
@@ -38,43 +51,19 @@ const appendPageLinks = (list) => {
   createList += `
     </ul>`
   pageLocation.innerHTML = createList;
+
   showPage(liNodes, currentPage);
+  addActive();
 };
 
 appendPageLinks(liNodes.length);
 
-// add Active class to current page
-const addActive = () => {
-  const pageList = document.querySelectorAll('.pagination ul li');
-  for (i=0; i<pageList.length; i+=1) {
-    if (pageList[(currentPage - 1)] === pageList[i]) {
-      pageList[i].classList.add('active');
-    } else {
-      pageList[i].classList.remove('active');
-    }
-  }
+
+
+document.onclick = function(event) {
+    var target = event.target || event.srcElement;
+
+    let currentPage =  ( target.innerHTML );
+    showPage(liNodes, currentPage)
+    addActive();
 };
-
-addActive();
-
-// const changePage = () => {
-//   const pageList = document.querySelectorAll('.pagination ul li a')
-//   console.log(pageList)
-//   // pageList.addEventListener('click', () => {
-//   //   currentPage = pageList
-//   // })
-//   // addActive();
-// };
-//
-// changePage();
-
-
-// Attempting to find the parent index in order to change the page variable to current parent index
-const g = document.querySelectorAll('[href="#"]');
-console.log(g.length);
-for (let i = 0, len = g.length; i < len; i++)
-{
-    g[i].onclick = function(){
-        alert(g.parentNode.indexOf())  ;
-    }
-}

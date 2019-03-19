@@ -61,9 +61,9 @@ appendPageLinks(liNodes.length);
 
 
 document.onclick = function(event) {
-    var target = event.target || event.srcElement;
+    let target = event.target || event.srcElement;
 
-    let currentPage =  ( target.innerHTML );
+    currentPage =  (target.innerHTML);
     showPage(liNodes, currentPage)
     addActive();
 };

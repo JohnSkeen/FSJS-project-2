@@ -25,8 +25,8 @@ searchLocation.innerHTML = searchStructure;
 // Function to show students based on current page pageNumber
 
 const showPage = (list, page) => {
-  let start = ((page - 1) * 10);
-  let end = (start + 9);
+  const start = ((page - 1) * 10);
+  const end = (start + 9);
   for (i = 0; i < list.length; i +=1 ) {
     if (i >= start && i <= end) {
       list[i].style.display = 'block';
@@ -52,7 +52,7 @@ const addActive = () => {
 // Function to add dynamic page list and set current active pageNumber
 
 const appendPageLinks = (list) => {
-  let pageNumber = Math.ceil(list.length / 10);
+  const pageNumber = Math.ceil(list.length / 10);
   let createList = `
     <ul id="pageList">`
     for (i = 1; i <= pageNumber; i+=1) {
